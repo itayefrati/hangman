@@ -218,13 +218,12 @@ def remove_from_list(lst, my_str):
     :param my_str:
     :return: a new list without the string in it
     """
-    new_list = list()
     for i in range(len(lst)):
-        if my_str != str(lst[i]):
-            new_list.append(lst[i])
+        if my_str == str(lst[i]):
+            lst.remove(lst[i])
             i += 1
         i += 1
-    return new_list
+    return lst
 
 
 def print_illegal(lst):
@@ -259,8 +258,23 @@ def delete_sequence(lst):
     return res
 
 
+def arrow(my_char, max_length):
+    """
+    this function gets a char and a number and prints an arrow
+    head when the input number is the longest line
+    :param my_char:
+    :param max_length:
+    :return:
+    """
+    for i in range(1, max_length+1):
+        print(my_char * i)
+    for i in range(max_length-1, 0, -1):
+        print(my_char*i)
+
+
 def main():
-    str1 = input("enter a list of groceries with , and no spaces: ")
+    # 7.2.6
+    """str1 = input("enter a list of groceries with , and no spaces: ")
     lst = str1.split(',')  # convert str to a list
     print(lst)
     while True:
@@ -269,7 +283,7 @@ def main():
             print(lst)
 
         elif num == '2':
-            print("there are " + str(len(lst)+1) + " groceries in the list")
+            print("there are " + str(len(lst)) + " groceries in the list")
 
         elif num == '3':
             product = input("enter a product: ")
@@ -306,7 +320,8 @@ def main():
 
         elif num == '9':
             print("have a good day!")
-            exit()
+            break """
+    print(arrow('* ', 5))
 
 
 if __name__ == "__main__":
