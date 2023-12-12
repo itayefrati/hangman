@@ -144,7 +144,6 @@ def is_greater(my_list, n):
     :return: new_list
     """
     new_list = list()
-    i = 0
     for i in range(len(my_list)):
         if my_list[i] > n:
             new_list.append(my_list[i])
@@ -160,7 +159,6 @@ def numbers_letters_count(my_str):
     :return: new_list
     """
     new_list = list()
-    i = 0
     count = 0
     for i in range(len(my_str)):
         if '0' < my_str[i] < '9':
@@ -197,7 +195,8 @@ def seven_boom(end_number):
 
 def sequence_del(my_str):
     """
-
+    this function deletes chars that repeats themselves
+    and returns a new string without them
     :param my_str:
     :return:
     """
@@ -211,9 +210,103 @@ def sequence_del(my_str):
     return new_str
 
 
+def remove_from_list(lst, my_str):
+    """
+    this function receives a list and a string and removes
+    the string from the existing list
+    :param lst:
+    :param my_str:
+    :return: a new list without the string in it
+    """
+    new_list = list()
+    for i in range(len(lst)):
+        if my_str != str(lst[i]):
+            new_list.append(lst[i])
+            i += 1
+        i += 1
+    return new_list
+
+
+def print_illegal(lst):
+    """
+    this function receives a list and returns a new list with all
+    the elements that are shorter than 3, or that don't contain letters
+    :param lst:
+    :return:
+    """
+    illegal_list = list()
+    for i in range(len(lst)):
+        if len(lst[i]) <= 3:
+            illegal_list.append(lst[i])
+            i += 1
+        elif not lst[i].isalpha():
+            illegal_list.append(lst[i])
+            i += 1
+        i += 1
+    return illegal_list
+
+
+def delete_sequence(lst):
+    """
+    this function removes duplicates from a list
+    :param lst:
+    :return:
+    """
+    res = []
+    for i in lst:
+        if i not in res:
+            res.append(i)
+    return res
+
+
 def main():
-    strr = "Heeyyy   yyouuuu!!!"
-    print(sequence_del(strr))
+    str1 = input("enter a list of groceries with , and no spaces: ")
+    lst = str1.split(',')  # convert str to a list
+    print(lst)
+    while True:
+        num = input("enter a number between 1 and 9: ")
+        if num == '1':
+            print(lst)
+
+        elif num == '2':
+            print("there are " + str(len(lst)+1) + " groceries in the list")
+
+        elif num == '3':
+            product = input("enter a product: ")
+            if product in str(lst):
+                print("yes")
+            else:
+                print("no")
+
+        elif num == '4':
+            product2 = input("enter the product that you want to check how many times it appears in the list: ")
+            counter = str(lst).count(product2)
+            print("this product appears " + str(counter) + " times in the list")
+
+        elif num == '5':
+            product3 = input("enter a product that you wish to remove from the list: ")
+            if product3 in str(lst):
+                print(remove_from_list(lst, product3))
+            else:
+                print("this product does not exist in the list")
+
+        elif num == '6':
+            product4 = input("enter a product that you want to add to the list: ")
+            if str(lst).count(product4) == 0:
+                lst.append(product4)
+                print(lst)
+            else:
+                print("this product already exists in the list")
+
+        elif num == '7':
+            print("these are the illegal groceries in the list " + str(print_illegal(lst)))
+
+        elif num == '8':
+            print("the new list is: " + str(delete_sequence(lst)))
+
+        elif num == '9':
+            print("have a good day!")
+            exit()
 
 
 if __name__ == "__main__":
