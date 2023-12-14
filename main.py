@@ -9,7 +9,7 @@ HANGMAN_ASCII_ART = """welcome to the game hangman
                       __/ |                      
                      |___/"""
 
-print(HANGMAN_ASCII_ART, '\n', MAX_TRIES)
+# print(HANGMAN_ASCII_ART, '\n', MAX_TRIES)
 
 """tav = input("guess a letter: ")
 
@@ -51,11 +51,43 @@ def try_update_letter_guessed(letter_guessed, old_letters_guessed):
         return False
 
 
+def show_hidden_word(secret_word, old_letters_guessed):
+    """
+    this function gets a word(string) and a list and returns
+    a new string that is combined from the letters that the
+    player guessed and _
+    :param secret_word:
+    :param old_letters_guessed:
+    :return:
+    """
+    new_str = ""
+    for i in range(len(secret_word)):
+        if secret_word[i] in old_letters_guessed:
+            new_str += secret_word[i]
+        else:
+            new_str += ' _ '
+    return new_str
+
+
+def check_win(secret_word, old_letters_guessed):
+    """
+    this function gets a word and a list and checks
+    if the word exists in the list of letters
+    :param secret_word:
+    :param old_letters_guessed:
+    :return:
+    """
+    new_str = show_hidden_word(secret_word, old_letters_guessed)
+    if new_str == secret_word:
+        return True
+    else:
+        return False
+
+
 def main():
-    old_letters = ['b', 'a', 'c']
-    letter = input("enter a letter: ")
-    print(try_update_letter_guessed(letter, old_letters))
-    print('\n', old_letters)
+    data = ("self", "py", 1.543)
+    format_string = "Hello %s %s learner, you have only %.1f units left before you master the course!"
+    print(format_string % data)
 
 
 if __name__ == "__main__":
