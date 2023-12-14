@@ -300,20 +300,25 @@ def multi_tuple(tuple1, tuple2):
 
 
 def sort_anagrams(list_of_strings):
+    """
+    
+    :param list_of_strings:
+    :return:
+    """
+    new_list = [[list_of_strings[0]]]
+    flag = False
+    list_of_strings.remove(list_of_strings[0])
+    for i in list_of_strings:
+        for j in range(len(new_list)):
+            if sorted(i) == sorted(new_list[j][0]):
+                new_list[j].append(i)
+                flag = True
+        if not flag:
+            new_list.append([i])
+        flag = False
+    return new_list
 
-
-"""result = []
-    for string in list_of_strings:
-        if set(string) in [set(s[0]) for s in result]:
-            for s in result:
-                if set(string) == set(s[0]):
-                    s.append(string)
-        else:
-            result.append([string])
-    return result"""
             
-
-
 def main():
     # 7.2.6
     """str1 = input("enter a list of groceries with , and no spaces: ")
