@@ -275,10 +275,22 @@ def arrow(my_char, max_length):
 
 
 def sort_prices(list_of_tuples):
+    """
+    this function gets a list of tuples and sorts them by price(highest number)
+    :param list_of_tuples: 
+    :return: 
+    """
     return sorted(list_of_tuples, key=itemgetter(1, 0), reverse=True)
 
 
 def multi_tuple(tuple1, tuple2):
+    """
+    this function gets two tuples and returns all the possible
+    combinations you can create from them
+    :param tuple1: 
+    :param tuple2: 
+    :return: 
+    """
     new_tuple = ()
     for i in range(len(tuple1)):
         for j in range(len(tuple2)):
@@ -288,10 +300,17 @@ def multi_tuple(tuple1, tuple2):
 
 
 def sort_anagrams(list_of_strings):
-    anagram_list = list(list_of_strings[0])
-    for i in range(len(list_of_strings)-1):
-        for j in range(len(list_of_strings)):
 
+
+"""result = []
+    for string in list_of_strings:
+        if set(string) in [set(s[0]) for s in result]:
+            for s in result:
+                if set(string) == set(s[0]):
+                    s.append(string)
+        else:
+            result.append([string])
+    return result"""
             
 
 
