@@ -1,3 +1,5 @@
+from operator import itemgetter
+
 
 def last_early(my_str):
     my_str.lower()
@@ -272,6 +274,27 @@ def arrow(my_char, max_length):
         print(my_char*i)
 
 
+def sort_prices(list_of_tuples):
+    return sorted(list_of_tuples, key=itemgetter(1, 0), reverse=True)
+
+
+def multi_tuple(tuple1, tuple2):
+    new_tuple = ()
+    for i in range(len(tuple1)):
+        for j in range(len(tuple2)):
+            new_tuple = new_tuple + ((tuple1[i], tuple2[j]),)
+            new_tuple = new_tuple + ((tuple2[j], tuple1[i]),)
+    return new_tuple
+
+
+def sort_anagrams(list_of_strings):
+    anagram_list = list(list_of_strings[0])
+    for i in range(len(list_of_strings)-1):
+        for j in range(len(list_of_strings)):
+
+            
+
+
 def main():
     # 7.2.6
     """str1 = input("enter a list of groceries with , and no spaces: ")
@@ -321,7 +344,15 @@ def main():
         elif num == '9':
             print("have a good day!")
             break """
-    print(arrow('* ', 5))
+
+    """products = [('milk', '5.5'), ('candy', '2.5'), ('bread', '9.0')]
+    print(sort_prices(products))
+    first_tuple = (1, 2, 3)
+    second_tuple = (4, 5, 6)
+    print(multi_tuple(first_tuple, second_tuple))"""
+    list_of_words = ['deltas', 'retainers', 'desalt', 'pants', 'slated', 'generating', 'ternaries', 'smelters',
+                     'termless', 'salted', 'staled', 'greatening', 'lasted', 'resmelts']
+    print(sort_anagrams(list_of_words))
 
 
 if __name__ == "__main__":
