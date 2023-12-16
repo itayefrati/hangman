@@ -318,7 +318,45 @@ def sort_anagrams(list_of_strings):
         flag = False
     return new_list
 
-            
+
+def count_chars(my_str):
+    """
+    this function gets a string and returns a dict
+    in the dict each char from the string is a key
+    and the value is how many times it appears in the string
+    :param my_str:
+    :return:
+    """
+    new_dict = {}
+    counter = 0
+    for char in my_str:
+        if not char.isalpha():
+            continue
+        for i in range(len(my_str)):
+            if char == my_str[i]:
+                counter += 1
+        new_dict[char] = counter
+        counter = 0
+    return new_dict
+
+
+def inverse_dict(my_dict):
+    """
+    this function gets a dict and returns new reverse dict,
+    where all the keys that have the same value are combined
+    together into a list inside the dict
+    :param my_dict:
+    :return:
+    """
+    new_dict = {}
+    for key, value in my_dict.items():
+        if value not in new_dict:
+            new_dict[value] = [key]
+        else:
+            new_dict[value].append(key)
+    return new_dict
+
+
 def main():
     # 7.2.6
     """str1 = input("enter a list of groceries with , and no spaces: ")
