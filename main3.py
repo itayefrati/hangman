@@ -435,7 +435,7 @@ def main():
     """print(are_files_equal(r"C:\\Users\איתי\OneDrive\מסמכים\temp\my text file 2.txt",
                           r"C:\\Users\איתי\OneDrive\מסמכים\temp\my text file.txt"))"""
 
-    file_path = input("enter a file directory: " '\n')
+    """file_path = input("enter a file directory: " '\n')
     action = input("enter an action sort/erv/last: ")
     if action == 'sort':
         with open(file_path, "r"):
@@ -447,7 +447,29 @@ def main():
             print(lst)
 
     elif action == 'rev':
-        pass
+        with open(file_path, "r"):
+            file_object = open(file_path, "r")
+            file = file_object.readline()
+            file2 = file_object.readline()
+            rev_text = file[::-1]
+            rev_text2 = file2[::-1]
+            print(rev_text)
+            print(rev_text2)
+
+    else:
+        num = int(input("enter a number: "))
+        with open(file_path, "r"):
+            file_object = open(file_path, "r")
+            lines = file_object.read().splitlines()
+            last_line = lines[-num]
+            print(last_line)
+            i = 1
+            while i < num:
+                file_object2 = open(file_path, "r")
+                lines2 = file_object2.read().splitlines()
+                last_line2 = lines2[-num + i]
+                i += 1
+                print(last_line2)"""
 
 
 if __name__ == "__main__":
