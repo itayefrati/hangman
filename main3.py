@@ -131,7 +131,7 @@ def squared_numbers(start, stop):
     new_list = list()
     i = start
     while i <= stop:
-        new_list.append(i*i)
+        new_list.append(i * i)
         i += 1
     return new_list
 
@@ -205,8 +205,8 @@ def sequence_del(my_str):
     i = 0
     new_str = my_str[i]
     for i in range(len(my_str) - 1):
-        if my_str[i] != my_str[i+1]:
-            new_str += my_str[i+1]
+        if my_str[i] != my_str[i + 1]:
+            new_str += my_str[i + 1]
             i += 1
         i += 1
     return new_str
@@ -268,10 +268,10 @@ def arrow(my_char, max_length):
     :param max_length:
     :return:
     """
-    for i in range(1, max_length+1):
+    for i in range(1, max_length + 1):
         print(my_char * i)
-    for i in range(max_length-1, 0, -1):
-        print(my_char*i)
+    for i in range(max_length - 1, 0, -1):
+        print(my_char * i)
 
 
 def sort_prices(list_of_tuples):
@@ -301,16 +301,17 @@ def multi_tuple(tuple1, tuple2):
 
 def sort_anagrams(list_of_strings):
     """
-    
+    this function gets a list of words and returns a list of lists sorted
+    by the anagrams of each word
     :param list_of_strings:
     :return:
     """
-    new_list = [[list_of_strings[0]]]
+    new_list = [[list_of_strings[0]]]  # create a list of lists with a string inside it
     flag = False
     list_of_strings.remove(list_of_strings[0])
     for i in list_of_strings:
         for j in range(len(new_list)):
-            if sorted(i) == sorted(new_list[j][0]):
+            if sorted(i) == sorted(new_list[j][0]):  # get inside a list that is inside a list
                 new_list[j].append(i)
                 flag = True
         if not flag:
@@ -355,6 +356,23 @@ def inverse_dict(my_dict):
         else:
             new_dict[value].append(key)
     return new_dict
+
+
+def are_files_equal(file1, file2):
+    """
+    this function checks if two files are
+    identical
+    :param file1:
+    :param file2:
+    :return:
+    """
+    with open(file1, "r") as f:
+        file_contents = f.read()
+    with open(file2, "r") as file:
+        file_contents2 = file.read()
+    if file_contents == file_contents2:
+        return True
+    return False
 
 
 def main():
@@ -406,15 +424,30 @@ def main():
         elif num == '9':
             print("have a good day!")
             break """
-
     """products = [('milk', '5.5'), ('candy', '2.5'), ('bread', '9.0')]
     print(sort_prices(products))
     first_tuple = (1, 2, 3)
     second_tuple = (4, 5, 6)
     print(multi_tuple(first_tuple, second_tuple))"""
-    list_of_words = ['deltas', 'retainers', 'desalt', 'pants', 'slated', 'generating', 'ternaries', 'smelters',
+    """list_of_words = ['deltas', 'retainers', 'desalt', 'pants', 'slated', 'generating', 'ternaries', 'smelters',
                      'termless', 'salted', 'staled', 'greatening', 'lasted', 'resmelts']
-    print(sort_anagrams(list_of_words))
+    print(sort_anagrams(list_of_words))"""
+    """print(are_files_equal(r"C:\\Users\איתי\OneDrive\מסמכים\temp\my text file 2.txt",
+                          r"C:\\Users\איתי\OneDrive\מסמכים\temp\my text file.txt"))"""
+
+    file_path = input("enter a file directory: " '\n')
+    action = input("enter an action sort/erv/last: ")
+    if action == 'sort':
+        with open(file_path, "r"):
+            file_object = open(file_path, "r")
+            file = file_object.read()
+            lst = sorted(file.split())
+            lst = list(set(lst))
+            lst = sorted(lst)
+            print(lst)
+
+    elif action == 'rev':
+        pass
 
 
 if __name__ == "__main__":
