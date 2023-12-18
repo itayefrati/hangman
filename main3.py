@@ -277,8 +277,8 @@ def arrow(my_char, max_length):
 def sort_prices(list_of_tuples):
     """
     this function gets a list of tuples and sorts them by price(highest number)
-    :param list_of_tuples: 
-    :return: 
+    :param list_of_tuples:
+    :return:
     """
     return sorted(list_of_tuples, key=itemgetter(1, 0), reverse=True)
 
@@ -287,9 +287,9 @@ def multi_tuple(tuple1, tuple2):
     """
     this function gets two tuples and returns all the possible
     combinations you can create from them
-    :param tuple1: 
-    :param tuple2: 
-    :return: 
+    :param tuple1:
+    :param tuple2:
+    :return:
     """
     new_tuple = ()
     for i in range(len(tuple1)):
@@ -375,6 +375,76 @@ def are_files_equal(file1, file2):
     return False
 
 
+def copy_file_content(source, destination):
+    """
+    this function copies one file to another
+    :param source:
+    :param destination:
+    :return:
+    """
+    copy_source = open(source, "r")
+    lines = ""
+    for line in copy_source:
+        lines += line
+    copy_source.close()
+    paste = open(destination, "w")
+    paste.write(lines)
+    paste.close()
+    num = open(destination, "r")
+    new_file = num.read()
+    num.close()
+    return new_file
+
+
+def who_is_missing(file_name):
+    """
+    this function receives a text file with a list of numbers
+    from 1 until n, unorganized and with one number missing
+    the function will return the missing number and write it
+    to a different text file
+    :param file_name:
+    :return:
+    """
+    num = 0
+    file = open(file_name, "r")
+    chat_input_file = open('found.txt', "w")
+    lst = file.read().split(',')
+    lst = sorted(lst)
+    for i in range(len(lst)):
+        if str(i) != lst[i]:
+            num = i
+            chat_input_file.write(str(num))
+            chat_input_file.close()
+            break
+    file.close()
+    chat_input_file = open("found.txt", "r")
+    print(chat_input_file.read())
+    chat_input_file.close()
+    return num
+
+
+def my_mp3_playlist(file_path):
+    tpl = ()
+    count_songs = 0
+    count2 = 0
+    list_of_lists = []
+    file = open(file_path, "r")
+    file_object = file.read()
+    split_lines = file_object.split('\n')
+    for line in split_lines:
+        list_of_lists.append(line.split(';'))
+        count_songs += 1
+    for i in range(len(list_of_lists)):
+        max_num = list_of_lists[0][2]
+        if list_of_lists[i][2] > max_num:
+            count2 = i
+    count_max = list_of_lists[0][1]
+
+    tpl = tpl + (list_of_lists[count2][0], ) + (count_songs, ) + (count_max, )
+    file.close()
+    return tpl
+
+
 def main():
     # 7.2.6
     """str1 = input("enter a list of groceries with , and no spaces: ")
@@ -434,7 +504,6 @@ def main():
     print(sort_anagrams(list_of_words))"""
     """print(are_files_equal(r"C:\\Users\איתי\OneDrive\מסמכים\temp\my text file 2.txt",
                           r"C:\\Users\איתי\OneDrive\מסמכים\temp\my text file.txt"))"""
-
     """file_path = input("enter a file directory: " '\n')
     action = input("enter an action sort/erv/last: ")
     if action == 'sort':
@@ -470,6 +539,10 @@ def main():
                 last_line2 = lines2[-num + i]
                 i += 1
                 print(last_line2)"""
+    # print(copy_file_content(r"C:\Users\User\Documents\i am itay efrati.txt",
+    #                      r"C:\Users\User\Documents\destination.txt"))
+    # print(who_is_missing(r"C:\Users\User\Documents\destination.txt"))
+    print(my_mp3_playlist(r"C:\Users\User\Documents\destination.txt"))
 
 
 if __name__ == "__main__":
