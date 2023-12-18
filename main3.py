@@ -424,9 +424,14 @@ def who_is_missing(file_name):
 
 
 def my_mp3_playlist(file_path):
+    """
+
+    :param file_path:
+    :return:
+    """
     tpl = ()
     count_songs = 0
-    count2 = 0
+    longest_song = 0
     list_of_lists = []
     file = open(file_path, "r")
     file_object = file.read()
@@ -437,10 +442,16 @@ def my_mp3_playlist(file_path):
     for i in range(len(list_of_lists)):
         max_num = list_of_lists[0][2]
         if list_of_lists[i][2] > max_num:
-            count2 = i
-    count_max = list_of_lists[0][1]
-
-    tpl = tpl + (list_of_lists[count2][0], ) + (count_songs, ) + (count_max, )
+            longest_song = i
+    lst = []
+    for j in list_of_lists:
+        for k in j:
+            lst.append(k)
+    count_max = lst[0]
+    for string in range(len(lst)):
+        if lst.count(lst[string]) > lst.count(count_max):
+            count_max = lst[string]
+    tpl = tpl + (list_of_lists[longest_song][0], ) + (count_songs, ) + (count_max, )
     file.close()
     return tpl
 
