@@ -424,6 +424,13 @@ def who_is_missing(file_name):
 
 
 def my_mp3_playlist(file_path):
+    """
+    this function gets a file with songs names lengths and singers,
+    it will return the name of the longest song, the number of song in the file
+    and the most repeated singer
+    :param file_path:
+    :return:
+    """
     tpl = ()
     count_songs = 0
     longest_song = 0
@@ -454,16 +461,23 @@ def my_mp3_playlist(file_path):
 
 
 def my_mp4_playlist(file_path, new_song):
+    """
+    this function gets a file and a song name and replaces the 3rd
+    song name in the file with the given song name
+    :param file_path:
+    :param new_song:
+    :return:
+    """
     with open(file_path, "r+") as file:
         file_object = file.read()
         split_lines = file_object.split('\n')
         if len(split_lines) < 3:
             split_lines.extend('\n' * (3-len(split_lines)))
-        split_lines[2] = new_song + ':Unknown;4:15;'
+        split_lines[2] = new_song + ';Unknown;4:15;'
         new_file_content = '\n'.join(split_lines)
         file.seek(0)
         file.write(new_file_content)
-        print(new_file_content)
+    print(new_file_content)
 
 
 def main():
@@ -563,7 +577,8 @@ def main():
     # print(copy_file_content(r"C:\Users\User\Documents\i am itay efrati.txt",
     #                      r"C:\Users\User\Documents\destination.txt"))
     # print(who_is_missing(r"C:\Users\User\Documents\destination.txt"))
-    print(my_mp4_playlist(r"C:\Users\215179540\Documents\my file.txt", 'bombo'))
+    file = r"C:\Users\User\Documents\destination.txt"
+    print(my_mp4_playlist(file, 'bombo'))
 
 
 if __name__ == "__main__":
