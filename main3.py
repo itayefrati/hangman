@@ -424,11 +424,6 @@ def who_is_missing(file_name):
 
 
 def my_mp3_playlist(file_path):
-    """
-
-    :param file_path:
-    :return:
-    """
     tpl = ()
     count_songs = 0
     longest_song = 0
@@ -439,8 +434,8 @@ def my_mp3_playlist(file_path):
     for line in split_lines:
         list_of_lists.append(line.split(';'))
         count_songs += 1
-     for list in list_of_lists:
-        list.remove('')
+    for list_of_strings in list_of_lists:
+        list_of_strings.remove('')
     for i in range(len(list_of_lists)):
         max_num = list_of_lists[0][2]
         if list_of_lists[i][2] > max_num:
@@ -456,6 +451,21 @@ def my_mp3_playlist(file_path):
     tpl = tpl + (list_of_lists[longest_song][0], ) + (count_songs, ) + (count_max, )
     file.close()
     return tpl
+
+
+def my_mp4_playlist(file_path, new_song):
+    file = open(file_path, "r")
+    file_object = file.read()
+    lines = len(file.readlines())
+    lst = []
+    if lines < 3:
+        with open(file_path, "w") as fp:
+            while lines < 3:
+                fp.write('\n')
+                lines += 1
+
+
+
 
 
 def main():
@@ -555,7 +565,7 @@ def main():
     # print(copy_file_content(r"C:\Users\User\Documents\i am itay efrati.txt",
     #                      r"C:\Users\User\Documents\destination.txt"))
     # print(who_is_missing(r"C:\Users\User\Documents\destination.txt"))
-    print(my_mp3_playlist(r"C:\Users\User\Documents\destination.txt"))
+    print(my_mp3_playlist(r"C:\Users\215179540\Documents\my file.txt"))
 
 
 if __name__ == "__main__":
