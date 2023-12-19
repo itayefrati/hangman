@@ -439,6 +439,8 @@ def my_mp3_playlist(file_path):
     for line in split_lines:
         list_of_lists.append(line.split(';'))
         count_songs += 1
+     for list in list_of_lists:
+        list.remove('')
     for i in range(len(list_of_lists)):
         max_num = list_of_lists[0][2]
         if list_of_lists[i][2] > max_num:
