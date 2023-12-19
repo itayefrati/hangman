@@ -9,37 +9,37 @@ HANGMAN_ASCII_ART = """welcome to the game hangman
                       __/ |                      
                      |___/"""
 HANGMAN_PHOTOS = {1: "x-------x",
-    2: """x-------x
+                  2: """x-------x
 |
 |
 |
 |
 |""",
-    3: """x-------x
+                  3: """x-------x
 |       |
 |       0
 |
 |   
 |""",
-    4: """x-------x
+                  4: """x-------x
 |       |
 |       0
 |       |
 |
 |""",
-    5: """x-------x
+                  5: """x-------x
 |       |
 |       0
 |      /|\\
 |
 |""",
-    6:"""x-------x
+                  6: """x-------x
 |       |
 |       0
 |      /|\\
 |      /
 |""",
-    7: """x-------x
+                  7: """x-------x
 |       |
 |       0
 |      /|\\
@@ -55,8 +55,14 @@ new_str = '_ ' * Length
 print(new_str)"""
 
 
-def check_valid_input(letter_guessed, old_letter_guessed):
+def starting_screen():
+    global MAX_TRIES
+    global HANGMAN_ASCII_ART
+    print(HANGMAN_ASCII_ART)
+    print("you have " + str(MAX_TRIES) + " tries")
 
+
+def check_valid_input(letter_guessed, old_letter_guessed):
     if len(letter_guessed) > 1:
         return False
 
@@ -75,7 +81,6 @@ def print_list(letters_list):
 
 
 def try_update_letter_guessed(letter_guessed, old_letters_guessed):
-
     if check_valid_input(letter_guessed, old_letters_guessed):
         old_letters_guessed.sort()
         old_letters_guessed.append(letter_guessed.lower())
@@ -124,14 +129,41 @@ def print_hangman(num_of_tries):
     return HANGMAN_PHOTOS[num_of_tries]
 
 
+def choose_word(file_path, index):
+    lst = []
+    j = 0
+    with open(file_path, "r") as file:
+        file_object = file.read()
+        words = file_object.split(' ')
+        for i in range(len(words)):
+            if i in lst:
+                continue
+            lst.append(words[i])
+        if index > len(words):
+            while index > len(words):
+                words.append(words[j])
+                j += 1
+    return words[index-1]
+
+
 def main():
     """data = ("self", "py", 1.543)
     format_string = "Hello %s %s learner, you have only %.1f units left before you master the course!"
     print(format_string % data)"""
-    num = 2
-    print(print_hangman(num))
+
+    file = input("enter a file path: ")
+    num = input("enter a number: ")
+    secret_word = choose_word(file, int(num))
+    old_letters_guessed = []
+    global MAX_TRIES
+    global HANGMAN_PHOTOS
+    
+
+
+
+    # file = r"C:\Users\User\Documents\destination.txt"
+    # print(choose_word(file, 9))
 
 
 if __name__ == "__main__":
     main()
-    
